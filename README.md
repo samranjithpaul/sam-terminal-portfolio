@@ -6,7 +6,7 @@ Built to feel like a real command-line interface — minimal, dark, fast, and ex
 
 ## Project info
 
-**URL**: https://your-portfolio-url.com
+**URL**: https://sam-terminal.vercel.app/
 
 ## ✨ Features
 
@@ -28,6 +28,7 @@ This project is built with:
 - HTML5
 - CSS3 (terminal + CRT effects)
 - EmailJS
+- Supabase
 - Tailwind CSS
 
 **Design Style:**
@@ -85,18 +86,38 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
+## 🔐 Environment Variables Setup
+
+Create a `.env` file in the root directory with the following variables:
+```env
+# Supabase Configuration
+VITE_SUPABASE_PROJECT_ID=""
+VITE_SUPABASE_PUBLISHABLE_KEY=""
+VITE_SUPABASE_URL=""
+
+# EmailJS Configuration
+VITE_EMAILJS_SERVICE_ID="" 
+VITE_EMAILJS_TEMPLATE_ID=""
+VITE_EMAILJS_PUBLIC_KEY=""
+```
+
+### How to get these values:
+
+**Supabase:**
+1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
+2. Create a new project or select existing one
+3. Navigate to Project Settings > API
+4. Copy the Project URL, Project ID, and anon/public key
+
+**EmailJS:**
+1. Go to [EmailJS Dashboard](https://dashboard.emailjs.com/)
+2. Create an email service
+3. Create an email template with variables: `{{from_name}}`, `{{reply_to}}`, `{{message}}`
+4. Copy Service ID, Template ID, and Public Key from Account settings
+
 ## 📬 Contact Form Setup (EmailJS)
 
 The contact form sends a terminal-themed email that looks like a CLI message inside the inbox.
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
-```env
-VITE_EMAILJS_SERVICE_ID=service_xxx
-VITE_EMAILJS_TEMPLATE_ID=template_xxx
-VITE_EMAILJS_PUBLIC_KEY=xxxx
-```
 
 ### EmailJS Template Variables
 ```
@@ -151,6 +172,8 @@ npm run build
 # Push the dist folder to gh-pages branch
 ```
 
+**Important:** Remember to add your environment variables to your deployment platform's settings!
+
 ## 📸 Preview
 
 Live preview recommended on both desktop + mobile for full effect.
@@ -166,9 +189,8 @@ Software / Web Developer
 
 - GitHub: [@samranjithpaul](https://github.com/samranjithpaul)
 - LinkedIn: [/samranjithpaul](https://linkedin.com/in/samranjithpaul)
-- Portfolio: [samranjithpaul.dev](https://samranjithpaul.dev)
+- Portfolio: [samranjithpaul.dev](https://sam-terminal.vercel.app/)
 
 ---
 
 Made with 💚 and terminal aesthetics
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
