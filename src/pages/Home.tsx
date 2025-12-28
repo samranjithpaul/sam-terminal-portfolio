@@ -39,8 +39,8 @@ export default function Home() {
             <RotatingTypeWriter
               texts={[
                 'Full-Stack Developer',
-                'Software Developer',
-                'Web Developer'
+                'Web Developer',
+                'Building Interactive Experiences'
               ]}
               typingDelay={100}
               deletingDelay={50}
