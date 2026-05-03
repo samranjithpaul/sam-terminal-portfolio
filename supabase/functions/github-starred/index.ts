@@ -33,6 +33,7 @@ serve(async (req) => {
       headers: {
         'Accept': 'application/vnd.github.v3+json',
         'User-Agent': 'Portfolio-App',
+        'Authorization': `Bearer ${Deno.env.get('GITHUB_TOKEN')}`,
       },
     });
 
