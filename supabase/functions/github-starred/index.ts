@@ -29,11 +29,12 @@ serve(async (req) => {
 
     console.log('Fetching fresh GitHub starred repos');
     
+    const githubToken = Deno.env.get('GITHUB_TOKEN')?.trim();
     const response = await fetch('https://api.github.com/users/samranjithpaul/starred?per_page=8', {
       headers: {
         'Accept': 'application/vnd.github.v3+json',
         'User-Agent': 'Portfolio-App',
-        'Authorization': `Bearer ${Deno.env.get('GITHUB_TOKEN')}`,
+        ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
       },
     });
 
