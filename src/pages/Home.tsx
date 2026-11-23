@@ -1,6 +1,6 @@
-import React from 'react';
+import { useState } from 'react';
+import { CodeVortex } from '@/components/CodeVortex';
 import { RotatingTypeWriter } from '@/components/RotatingTypeWriter';
-import { TypeWriter } from '@/components/TypeWriter';
 import { Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { terminalSounds } from '@/utils/sounds';
@@ -15,6 +15,8 @@ const suggestedCommands = [
 ];
 
 export default function Home() {
+  const [vortexPaused, setVortexPaused] = useState(false);
+
   const handleLinkClick = () => {
     terminalSounds.playClick();
   };
@@ -23,32 +25,47 @@ export default function Home() {
     <div className="space-y-6 sm:space-y-8 md:space-y-6 lg:space-y-10 animate-fade-in">
       {/* Hero */}
       <div className="space-y-6 sm:space-y-8 md:space-y-6 lg:space-y-8">
-        <div className="border-2 border-terminal-accent p-6 sm:p-8 md:p-6 lg:p-10 xl:p-12 terminal-box-glow">
-          {/* Name */}
-          <div className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-terminal-accent terminal-glow mb-3 md:mb-4 lg:mb-6 xl:mb-8 break-words leading-tight">
-            <TypeWriter 
-              text="SAM RANJITH PAUL" 
-              delay={80} 
-              showCursor={false} 
-              enableSound={true}
-            />
+        <section
+          aria-labelledby="portfolio-name"
+          className="relative isolate left-1/2 flex min-h-[100svh] w-[100vw] -translate-x-1/2 items-center justify-center overflow-hidden bg-[#000703] px-5 py-20 text-center sm:px-12"
+        >
+          <CodeVortex paused={vortexPaused} />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,7,3,.92)_0%,rgba(0,7,3,.68)_34%,transparent_74%)]"
+          />
+          <div className="relative mx-auto w-full max-w-6xl">
+            <h1 id="portfolio-name" className="text-[clamp(2.1rem,7.5vw,7rem)] font-bold leading-none tracking-[-0.07em] text-[#edfff2] [text-shadow:0_0_30px_rgba(43,255,121,.38)]">
+              SAM RANJITH PAUL
+            </h1>
+            <div className="mt-5 min-h-[3em] text-base text-[#b8fbd0] sm:text-xl">
+              <div className="motion-reduce:hidden">
+                <RotatingTypeWriter
+                  texts={['Full-Stack Developer', 'Web Developer', 'Building Interactive Experiences']}
+                  typingDelay={100}
+                  deletingDelay={50}
+                  pauseDelay={2000}
+                  enableSound={false}
+                />
+              </div>
+              <span className="hidden motion-reduce:inline">Full-Stack Developer</span>
+            </div>
+            <Link
+              to="/projects"
+              onClick={handleLinkClick}
+              className="inline-flex min-h-11 items-center border border-[#43ed86] bg-[#00190d] px-5 py-2 text-sm font-semibold text-[#d9ffe6] transition-colors hover:bg-[#0b4025] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b8fbd0]"
+            >
+              View projects
+            </Link>
           </div>
-          
-          {/* Rotating subtitle */}
-          <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-terminal-text-dim">
-            <RotatingTypeWriter
-              texts={[
-                'Full-Stack Developer',
-                'Web Developer',
-                'Building Interactive Experiences'
-              ]}
-              typingDelay={100}
-              deletingDelay={50}
-              pauseDelay={2000}
-              enableSound={false}
-            />
-          </div>
-        </div>
+          <button
+            type="button"
+            onClick={() => setVortexPaused((paused) => !paused)}
+            className="absolute bottom-5 right-5 min-h-11 rounded border border-[#316047] bg-[#00140a] px-3 text-xs text-[#e0ffea] hover:bg-[#0b4025] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b8fbd0] motion-reduce:hidden"
+          >
+            {vortexPaused ? 'Resume animation' : 'Pause animation'}
+          </button>
+        </section>
 
         {/* Commands section */}
         <div className="space-y-6 sm:space-y-8 md:space-y-4 lg:space-y-6 xl:space-y-8">
